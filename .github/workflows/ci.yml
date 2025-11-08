@@ -21,12 +21,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: 打印文件所在路径
         run: pwd
-
       - name: 测试输出内容
-        run: echo "complie tool: ${{ matrix.toolchain }}"
-
+        run: echo complie tool: ${{ matrix.toolchain }}
       - name: 更新工具链
         run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
-
       - name: 构建项目
         run: cargo build --verbose
