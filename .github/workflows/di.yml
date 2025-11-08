@@ -1,0 +1,22 @@
+name: cargo build & test
+
+on: push
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build_and_run:
+    name: Rust project - latest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain:
+          - stable
+          - beta
+          - nightly
+    steps:
+      - uses: actions/checkout@v4
+      - run rustup update ${{ matrix.toolchain }}
+      - run cargo build --verbose
+      - run cargo run --verbose
