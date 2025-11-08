@@ -1,20 +1,25 @@
-name: cargo build & test
+name: Cargo Build & Test
 
-on: push
+on:
+  push:
+  pull_request:
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build_and_run:
+  build_and_test:
     name: Rust project - latest
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        toolchain: [stable, beta, nightly]
+        toolchain:
+          - stable
+          - beta
+          - nightly
     steps:
       - uses: actions/checkout@v4
-      - run echo "using toolchain ${{ matrix.toolchain }}"
-      # - run rustup update ${{ matrix.toolchain }}
-      # - run cargo build --verbose
-      # - run cargo run --verbose
+      - run: echo "Hello, World!"
+      - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
+      - run: cargo build --verbose
+      # - run: cargo run --verbose
