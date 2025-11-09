@@ -23,8 +23,7 @@ jobs:
         run: pwd
       - name: 测试输出内容${{ matrix.toolchain }}
         run: echo complie tool
-        with:
-          version: 100
+
       - name: 更新工具链
         run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
       - name: 构建项目
