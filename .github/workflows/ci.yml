@@ -21,8 +21,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: 打印文件所在路径
         run: pwd
-      - name: 测试输出内容
-        run: echo complie tool $version
+      - name: 测试输出内容${{ matrix.toolchain }}
+        run: echo complie tool
         with:
           version: 100
       - name: 更新工具链
