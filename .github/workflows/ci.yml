@@ -25,6 +25,10 @@ jobs:
       - name: 测试输出内容${{ matrix.toolchain }}
         run: echo complie tool ${{ matrix.toolchain }}
 
+      - name: "stable专用的步骤"
+        if: ${{ matrix.toolchain == 'stable' }}
+        run: echo stable运行输出
+
       - name: step with environment variables
         env:
           my_variable: my variables
